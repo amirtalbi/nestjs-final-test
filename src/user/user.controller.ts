@@ -3,16 +3,14 @@ import {
     Body,
     ConflictException,
     Controller,
-    Get,
     HttpStatus,
     Param,
     Post,
     UsePipes,
     ValidationPipe,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/user.dto';
 import { UserService } from './user.service';
-import { Logger } from '@nestjs/common';
+import { UserDto } from './dto/user.dto';
 
 @Controller()
 export class UserController {
@@ -20,9 +18,9 @@ export class UserController {
 
     @Post()
     @UsePipes(new ValidationPipe())
-    async addUser(@Body() createUserDto: CreateUserDto) {
+    async save(@Body() body: UserDto) {
         try {
-            const data = await this.userService.addUser(createUserDto);
+            const data = await this.userService.addUser(body.email);
             return {
                 statusCode: HttpStatus.CREATED,
                 message: 'User created successfully',
@@ -45,7 +43,7 @@ export class UserController {
         }
     }
 
-    @Get(':email')
+    @Post('user')
     async getUser(@Param('email') email: string) {
         return this.userService.getUser(email);
     }
