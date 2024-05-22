@@ -42,7 +42,6 @@ export class TaskController {
     }
 
     @Get('user/:userId')
-    @UsePipes(ValidationPipe)
     async getUserTasks(
         @Param('userId', ParseIntWithPositiveValuePipe) userId: number,
     ): Promise<Task[]> {
