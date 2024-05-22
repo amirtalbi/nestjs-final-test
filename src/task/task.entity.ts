@@ -1,13 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('tasks')
+@Entity()
 export class Task {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column()
-    title: string;
+    name: string;
 
     @Column()
-    description: string;
+    userId: number;
+
+    @Column()
+    priority: number;
 }
