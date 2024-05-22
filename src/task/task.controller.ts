@@ -41,12 +41,6 @@ export class TaskController {
         }
     }
 
-    @Get(':name')
-    @UsePipes(ValidationPipe)
-    async getTaskByName(@Param('name') name: string): Promise<Task> {
-        return this.taskService.getTaskByName(name);
-    }
-
     @Get('user/:userId')
     @UsePipes(ValidationPipe)
     async getUserTasks(
