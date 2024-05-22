@@ -3,6 +3,7 @@ import {
     Body,
     ConflictException,
     Controller,
+    Get,
     HttpStatus,
     Param,
     Post,
@@ -43,7 +44,7 @@ export class UserController {
         }
     }
 
-    @Post('user')
+    @Get('user/:email')
     async getUser(@Param('email') email: string) {
         return this.userService.getUser(email);
     }
